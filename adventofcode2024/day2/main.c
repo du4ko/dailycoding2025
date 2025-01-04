@@ -52,15 +52,79 @@ int** readinput(const char* filename, int* rows, int* column_in_row) {
     return data;
 }
 
-int * solution(int ** data)
+int check_inc_dec(int * row, int size)
 {
-	for (int i = 0; i < rows; i++) {
-        for(int k = 0; k < column_in_row[i];k++ )
+    if(row[0] < row[1])
+    {
+        for(int i = 0; i < size - 1; i++)
         {
-        	printf("%d ", data[i][k]);
+            if(row[i] <= row[i+1])
+            {
+                return 0;
+            }
         }
-        printf("\n");
     }
+    if(row[0] > row[1])
+    {
+        for(int i = 0; i < size - 1; i++)
+        {
+            if(row[i] >= row[i+1])
+            {
+                return 0;
+            }
+        }
+    }
+    return 1;
+
+}
+
+int solution_one(int ** data, int * column_in_row)
+{
+    int return_array = 0;
+    int col_result = 1;
+    for (int i = 0; i < MAX_ROWS; i++) {
+        col_result = 1;
+        int check_row = check_inc_dec(data[i],column_in_row[i]);
+
+        if(check_row == 0)
+        {
+            continue;
+        }
+
+        if(data[i][0] < data[i][1])
+        {
+            for(int k = 0; k < column_in_row[i] - 1;k++ )
+            {
+                int result = data[i][k + 1] - data[i][k];
+                if(result > 2)
+                {
+                    printf("row - %d col - %d \n", i + 1, k + 1);
+                    col_result = 0;
+                    break;
+                }
+            }
+        }
+        if(data[i][0] > data[i][1])
+        {
+            for(int k = 0; k < column_in_row[i] - 1;k++ )
+            {
+                int result = data[i][k] - data[i][k + 1];
+                if(result > 2)
+                {
+                    printf("row - %d col - %d \n", i + 1, k + 1);
+                    col_result = 0;
+                    break;
+                }
+            }
+        }
+
+        if(col_result == 1)
+        {
+            return_array += 1;
+        }
+ 
+    }
+    return return_array;
 }
 
 int main() {
@@ -72,8 +136,10 @@ int main() {
         return 1; // Error occurred
     }
 
+    int solution_task_one = solution_one(data, column_in_row);
+    printf("%d\n", solution_task_one);
     // Free allocated memory
-    for (int i = 0; i < rows; i++) {
+    for (int i = 0; i < MAX_ROWS; i++) {
         free(data[i]);
     }
     free(data);
