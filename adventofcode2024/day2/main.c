@@ -54,28 +54,43 @@ int** readinput(const char* filename, int* rows, int* column_in_row) {
 
 int check_inc_dec(int * row, int size)
 {
+    if(row[0] == row[1])
+    {
+        return 0;
+    }
     if(row[0] < row[1])
     {
         for(int i = 0; i < size - 1; i++)
         {
-            if(row[i] <= row[i+1])
+            // printf("%d + %d ", row[i], row[i+1]);
+            // printf("\n");
+            if(row[i] < row[i+1])
+            {
+                continue;
+            }
+            else
             {
                 return 0;
             }
+
         }
     }
+
     if(row[0] > row[1])
     {
         for(int i = 0; i < size - 1; i++)
         {
-            if(row[i] >= row[i+1])
+            if(row[i] > row[i+1])
+            {
+                continue;
+            }
+            else
             {
                 return 0;
             }
         }
     }
     return 1;
-
 }
 
 int solution_one(int ** data, int * column_in_row)
@@ -85,20 +100,20 @@ int solution_one(int ** data, int * column_in_row)
     for (int i = 0; i < MAX_ROWS; i++) {
         col_result = 1;
         int check_row = check_inc_dec(data[i],column_in_row[i]);
+            
 
         if(check_row == 0)
         {
             continue;
         }
-
         if(data[i][0] < data[i][1])
         {
             for(int k = 0; k < column_in_row[i] - 1;k++ )
             {
                 int result = data[i][k + 1] - data[i][k];
-                if(result > 2)
+                if(result > 3)
                 {
-                    printf("row - %d col - %d \n", i + 1, k + 1);
+                    //printf("row - %d col - %d \n", i + 1, k + 1);
                     col_result = 0;
                     break;
                 }
@@ -109,9 +124,9 @@ int solution_one(int ** data, int * column_in_row)
             for(int k = 0; k < column_in_row[i] - 1;k++ )
             {
                 int result = data[i][k] - data[i][k + 1];
-                if(result > 2)
+                if(result > 3)
                 {
-                    printf("row - %d col - %d \n", i + 1, k + 1);
+                    //printf("row - %d col - %d \n", i + 1, k + 1);
                     col_result = 0;
                     break;
                 }
@@ -121,6 +136,12 @@ int solution_one(int ** data, int * column_in_row)
         if(col_result == 1)
         {
             return_array += 1;
+            for(int u = 0; u < column_in_row[i]; u++)
+            {
+                printf("%d ", data[i][u]);
+            }
+            printf("\n");
+
         }
  
     }
