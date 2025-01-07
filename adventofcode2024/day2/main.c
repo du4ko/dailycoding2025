@@ -52,6 +52,25 @@ int** readinput(const char* filename, int* rows, int* column_in_row) {
     return data;
 }
 
+int * remove_element(int * arr, int position, int size)
+{
+    int * resized = (int*)malloc((size - 1) * sizeof(int));
+    int new_size = 0;
+    for(int i = 0; i < size; i++)
+    {
+        if(i == position)
+        {
+            continue;
+        }
+        else
+        {
+            resized[new_size] = arr[i];
+            new_size++;
+        }
+    }
+    return resized;
+}
+
 int check_inc_dec(int * row, int size)
 {
     if(row[0] == row[1])
@@ -164,6 +183,7 @@ int main() {
         free(data[i]);
     }
     free(data);
+    free(resized);
 
     return 0;
 }
