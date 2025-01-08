@@ -73,6 +73,7 @@ int * remove_element(int * arr, int position, int size)
 
 int check_inc_dec(int * row, int size)
 {
+    int counter = 0;
     if(row[0] == row[1])
     {
         return 0;
@@ -81,15 +82,32 @@ int check_inc_dec(int * row, int size)
     {
         for(int i = 0; i < size - 1; i++)
         {
-            // printf("%d + %d ", row[i], row[i+1]);
-            // printf("\n");
             if(row[i] < row[i+1])
             {
                 continue;
             }
             else
             {
-                return 0;
+                if(counter == 0)
+                {
+                    //we use recursion in order to determine if the array minus the first wrong element is correctly ascending
+                    //checker is to make sure we dont go in twice
+                    int * row_minus_one = remove_element(row, i, size - 1);
+                    if(check_inc_dec(row_minus_one, size - 2))
+                    {
+                        counter++;
+                        continue;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                    free(row_minus_one);
+                }
+                else
+                {
+                    return 0;
+                }
             }
 
         }
@@ -105,7 +123,26 @@ int check_inc_dec(int * row, int size)
             }
             else
             {
-                return 0;
+                if(counter == 0)
+                {
+                    //we use recursion in order to determine if the array minus the first wrong element is correctly descending
+                    //checker is to make sure we dont go in twice
+                    int * row_minus_one = remove_element(row, i, size - 1);
+                    if(check_inc_dec(row_minus_one, size - 2))
+                    {
+                        counter++;
+                        continue;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                    free(row_minus_one);
+                }
+                else
+                {
+                    return 0;
+                }
             }
         }
     }
@@ -170,7 +207,7 @@ int solution_one(int ** data, int * column_in_row)
 int main() {
     int rows = 0;
     int column_in_row[MAX_ROWS] = {0};
-    int** data = readinput("first_input.txt", &rows, column_in_row);
+    int** data = readinput("test_input.txt", &rows, column_in_row);
 
     if (data == NULL) {
         return 1; // Error occurred
@@ -183,7 +220,7 @@ int main() {
         free(data[i]);
     }
     free(data);
-    free(resized);
+
 
     return 0;
 }
