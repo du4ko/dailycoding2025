@@ -3,7 +3,7 @@
 
 class Pawn : public Piece{
 	public:
-		Pawn(bool isWhite) : Piece(isWhite, 'P');
+		Pawn(bool isWhite) : Piece(isWhite, 'P') {}
 		bool isValidMove(uint8_t startX, uint8_t startY, uint8_t endX, uint8_t endY) override
 		{
 			if(isWhite)
