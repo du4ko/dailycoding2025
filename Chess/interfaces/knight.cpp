@@ -13,4 +13,4 @@ class Knight : public Piece
 		
 		return (dx == 2 && dy == 1) || (dx == 1 && dy == 2);
 	}
-}
+};

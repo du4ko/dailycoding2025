@@ -9,4 +9,4 @@ class Rook : Piece
 		{
 			return (startX == endX) || (startY == endY)
 		}
-}
+};

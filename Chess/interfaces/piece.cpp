@@ -14,4 +14,4 @@ class Piece
 
 		bool getColor() const {return isWhite};
 		char getType() const {return Type};
-}
+};

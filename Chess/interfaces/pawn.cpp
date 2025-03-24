@@ -36,4 +36,4 @@ class Pawn : public Piece{
 			}
 			return false;	
 		}
-}
+};

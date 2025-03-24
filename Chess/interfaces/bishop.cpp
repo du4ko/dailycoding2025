@@ -9,4 +9,4 @@ class Bishop : public Piece
 		{
 			return abs(endY - startY) == abs(endX - startX);
 		}
-}
+};
