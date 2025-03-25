@@ -1,15 +1,13 @@
-#include "interfaces/board.cpp"
-#include "interfaces/pawn.cpp"
-#include "interfaces/knight.cpp"
-#include "interfaces/bishop.cpp"
-#include "interfaces/king.cpp"
-#include "interfaces/queen.cpp"
-#include "interfaces/piece.cpp"
+#include "interfaces/headers/board.h"
+#include <cstdlib>
 
 
-void main()
+
+int main()
 {
-	Board mn_board = new Board();
+	Board mn_board;
 	mn_board.drawBoard();
+
+	return 0;
 
 }
