@@ -14,6 +14,7 @@ class Board
 		~Board();
 		void initializeBoard();
 		void drawBoard();
+		std::vector<std::vector<Piece*>>& getBoard();
 };
 
 #endif

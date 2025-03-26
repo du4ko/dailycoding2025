@@ -83,3 +83,8 @@ Board::~Board()
 	}
 	board.clear();
 }
+
+std::vector<std::vector<Piece*>>& Board::getBoard()
+{
+	return board;
+}
