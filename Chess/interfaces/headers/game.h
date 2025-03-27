@@ -10,11 +10,14 @@ class Game
 		Board board;
 		Player white_player;
 		Player black_player;
+		bool isWhiteTurn;
 	public:
 		Game();
 		~Game();
 		bool Move(uint8_t startX, uint8_t startY, uint8_t endX, uint8_t endY);
 		Board get_board();
+		bool getIsWhiteTurn();
+		void setIsWhiteTurn(bool color = true);
 		
 };
 

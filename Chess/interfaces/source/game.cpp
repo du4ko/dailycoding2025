@@ -16,4 +16,14 @@ Board Game::get_board()
 	return board;
 }
 
+bool Game::getIsWhiteTurn()
+{
+	return isWhiteTurn;
+}
+
+void Game::setIsWhiteTurn(bool color)
+{
+	isWhiteTurn = color;
+}
+
 Game::~Game() {}
