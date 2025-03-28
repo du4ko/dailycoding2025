@@ -18,6 +18,7 @@ class Game
 		Board get_board();
 		bool getIsWhiteTurn();
 		void setIsWhiteTurn(bool color = true);
+		bool checkCollision(uint8_t startX, uint8_t startY, uint8_t endX, uint8_t endY);
 		
 };
 
